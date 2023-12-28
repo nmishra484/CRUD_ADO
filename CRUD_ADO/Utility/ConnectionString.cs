@@ -2,7 +2,7 @@
 {
     public static class ConnectionString
     {
-        private static string cName = "Data Source=STPL-INT-ANUS;Initial Catalog=CRUD_ADO;User ID=sa;Password=P@ssw0rd";
+        private static string cName = "Data Source=STPL-INT-ANUS;Initial Catalog=Employee_DB;User ID=sa;Password=P@ssw0rd";
         public static string CName
         {
             get => cName;

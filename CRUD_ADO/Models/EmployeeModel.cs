@@ -2,9 +2,11 @@
 {
     public class EmployeeModel
     {
-        public int Employee_Id { get; set; }
-        public int Employee_id { get; internal set; }
-        public string Employee_Name{ get; set; } = string.Empty;
-        public String Employee_Salary{ get; set;} = string .Empty;
+        public int Employee_id { get; set; }
+        public string  Employee_Name{ get; set; }
+        public string  Salary{ get; set;}
+        public string Email { get; set; }
+        public string Phone { get; set;} 
+        public string Address {  get; set; }    
     }
 }
