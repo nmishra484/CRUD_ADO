@@ -17,8 +17,8 @@ namespace CRUD_ADO.Models
         public IEnumerable<EmployeeModel> GetAllEmployeeModel()
         {
             List<EmployeeModel> lstEmployeeModel = new List<EmployeeModel>();
-           // cmd = new SqlCommand("SP_Employee", con);
-            cmd.Parameters.AddWithValue("@Flag", "Select_Employee");
+            // cmd = new SqlCommand("SP_Employee", con);
+            cmd = new SqlCommand("SP_Select", con);
             cmd.CommandType = CommandType.StoredProcedure;
             con.Open();
             rdr = cmd.ExecuteReader();
@@ -31,7 +31,7 @@ namespace CRUD_ADO.Models
                 EmployeeModel.Phone = rdr["Phone"].ToString();
                 EmployeeModel.Email = rdr["Email"].ToString();  
                 EmployeeModel.Address = rdr["Address"].ToString();
-                lstEmployeeModel.Add(EmployeeModel);
+                lstEmployeeModel.Add(EmployeeModel); 
             }
             con.Close();
             return lstEmployeeModel;
