@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD_ADO.Controllers
 {
+
     public class EmployeeController : Controller
     {
         private EmployeeDataAccessLayer empDataAccessLayer;
@@ -14,29 +15,38 @@ namespace CRUD_ADO.Controllers
         }
         public ActionResult Index()
         {
-            IEnumerable<EmployeeModel> students = empDataAccessLayer.GetAllEmployeeModel();
+            IEnumerable<EmployeeModel>students = empDataAccessLayer.GetAllEmployeeModel();
             return View(students);
         }
-        public ActionResult Details(int id)
-        {
-            EmployeeModel empMod = empDataAccessLayer.GetEmployeeModelData(id);
-            return View(empMod);
-        }
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    EmployeeModel empMod = empDataAccessLayer.GetEmployeeModelData(id);
+        //    return View(empMod);
+        //}
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+        //public ActionResult Edit(int id)
+        //{
+        //    EmployeeModel empMod = empDataAccessLayer.GetEmployeeModelData(id);
+        //    return View(empMod);
+        //}
+
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             EmployeeModel empMod = empDataAccessLayer.GetEmployeeModelData(id);
-            return View(empMod);
+            return View(id);
         }
+
+        [HttpPost]
         public ActionResult Edit(int id ,  EmployeeModel employeeModel)
         {
            try
             {
                 empDataAccessLayer.UpdateEmployeeModel(employeeModel);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch 
             { 
@@ -50,25 +60,31 @@ namespace CRUD_ADO.Controllers
             try
             {
                 empDataAccessLayer.AddEmployeeModel(employeeModel);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
         }
+        [HttpGet]
+        
         public ActionResult Delete(int id)
         {
             EmployeeModel empMod = empDataAccessLayer.GetEmployeeModelData(id);
+            empMod.Employee_id = id;
+
             return View(empMod);
         }
-        public ActionResult Delete(int id, EmployeeModel employeeModel)
+
+        [HttpPost]
+        public ActionResult Delete( EmployeeModel employeeModel)
         {
             try
             {
                 empDataAccessLayer.DeleteEmployeeModel(employeeModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch 
             {

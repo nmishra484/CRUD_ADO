@@ -82,7 +82,7 @@ namespace CRUD_ADO.Models
 
             //using (con = new SqlConnection(connectionString))
             //{
-            cmd = new SqlCommand("SP_Select", con);
+            cmd = new SqlCommand("SP_SelectByID", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@id", id);
             //string sqlQuery = "SELECT * FROM SW_TBL_EMPLOYEE WHERE Employee_id= " + id;
@@ -107,7 +107,7 @@ namespace CRUD_ADO.Models
         {
             //using (con = new SqlConnection(connectionString))
             //{
-            cmd = new SqlCommand("SP_Delete", con);
+            cmd = new SqlCommand("SP_Delete @id=1", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id",employeeModel.Employee_id);
             con.Open();
